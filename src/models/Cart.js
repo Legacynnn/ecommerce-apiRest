@@ -12,7 +12,7 @@ const Schema = new mongoose.Schema({
     payment: {
         card: {
             number: {
-                type: String,
+                type: Number    ,
             },
             cvc: {
                 type: String,
@@ -21,7 +21,7 @@ const Schema = new mongoose.Schema({
                 type: String,
             },
             dueDate: {
-                type: Number,
+                type: String,
             },
         }
     }

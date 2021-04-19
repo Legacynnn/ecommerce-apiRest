@@ -7,6 +7,7 @@ const cartController = {
 
         try{
             const createdCart = await cartModel.create({...bodyData, username: user_id})
+            await createdCart.populate('products').execPopulate()
             return res.status(200).json(createdCart)
         }catch(err){
             return res.status(400).json(err)
@@ -15,10 +16,13 @@ const cartController = {
     },
     
     async getCartByUserID(req, res){
-
-    },
-
-    async getCartById(req,res){
+        const { user_id } = req.params
+        try{
+            const userCarts = await cartModel.find({ username: user_id }).populate('username').populate('products')
+            return res.status(200).json(userCarts)
+        }catch(err){
+            return res.status(400).json(err)
+        }
 
     },
 }

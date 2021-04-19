@@ -6,6 +6,9 @@ const userController = {
 
         try{
             const newUser = await userModel.create(bodyData)
+
+            newUser.password = undefined
+
             return res.status(201).json(newUser)
         }
         catch(err){
